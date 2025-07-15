@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;         /* Prevent scrollbars */
+  height: 100%;
+  touch-action: none;       /* Disable pinch/scroll/swipe gestures */
+}
+
 body {
     background-color: #0C1E2C;
     color: #FFFFFF;
@@ -44,6 +52,7 @@ canvas {
     background-color: #000;
     border: 2px solid #00ADEF;
     box-shadow: 0 0 20px #00ADEF;
+    touch-action: none;
 }
 
 #powerup-banner {

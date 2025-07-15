@@ -482,7 +482,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     muteBtn.addEventListener("click", () => SoundEngine.toggleMute());
     restartBtn.addEventListener("click", init);
-
+    document.addEventListener("touchstart", (e) => e.preventDefault(), {
+        passive: false,
+    });
+    document.addEventListener("touchmove", (e) => e.preventDefault(), {
+        passive: false,
+    });
     SoundEngine.init();
     SoundEngine.create("collect", {
         type: "sine",
