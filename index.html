@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empyrean Navigator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Empyrean Navigator</h1>
+            <div class="hud">
+                <div>
+                    <span>Empowerment Score:</span>
+                    <span id="score">0</span>
+                </div>
+                <div>
+                    <span>Lives:</span>
+                    <span id="lives"></span>
+                </div>
+            </div>
+        </header>
+        <div id="powerup-banner" class="hidden">ENROLLMENT BOOST ACTIVE</div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="controls">
+            <p>Use Arrow Keys or WASD to move. Swipe on mobile.</p>
+            <button id="mute-btn">Mute</button>
+        </div>
+        <div id="end-screen" class="hidden">
+            <p id="end-message"></p>
+            <button id="restart-btn">Play Again</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
