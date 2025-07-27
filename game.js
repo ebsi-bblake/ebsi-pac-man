@@ -462,6 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < lives; i++) livesEl.innerHTML += "🌟";
     }
 
+    // Keyboard controls
     window.addEventListener("keydown", (e) => {
         if (!player) return;
         const key = e.key;
@@ -479,6 +480,64 @@ document.addEventListener("DOMContentLoaded", () => {
             player.dy = 0;
         }
     });
+    
+    // Touch/swipe controls
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+    
+    const minSwipeDistance = 30; // Minimum distance for a swipe to register
+    
+    window.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    
+    window.addEventListener("touchend", (e) => {
+        if (!player) return;
+        
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+        
+        // Check if swipe distance is sufficient
+        if (Math.abs(deltaX) < minSwipeDistance && Math.abs(deltaY) < minSwipeDistance) {
+            return; // Not a swipe, ignore
+        }
+        
+        // Determine swipe direction based on which delta is larger
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            // Horizontal swipe
+            if (deltaX > 0) {
+                // Swipe right
+                player.dx = 1;
+                player.dy = 0;
+            } else {
+                // Swipe left
+                player.dx = -1;
+                player.dy = 0;
+            }
+        } else {
+            // Vertical swipe
+            if (deltaY > 0) {
+                // Swipe down
+                player.dx = 0;
+                player.dy = 1;
+            } else {
+                // Swipe up
+                player.dx = 0;
+                player.dy = -1;
+            }
+        }
+    }, { passive: true });
+    
+    // Optional: Prevent default touch behaviors that might interfere
+    window.addEventListener("touchmove", (e) => {
+        e.preventDefault();
+    }, { passive: false });
 
     muteBtn.addEventListener("click", () => SoundEngine.toggleMute());
     restartBtn.addEventListener("click", init);
