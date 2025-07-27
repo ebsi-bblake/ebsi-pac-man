@@ -541,6 +541,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     muteBtn.addEventListener("click", () => SoundEngine.toggleMute());
     restartBtn.addEventListener("click", init);
+    restartBtn.addEventListener("touchend", init);
     document.addEventListener("touchstart", (e) => e.preventDefault(), {
         passive: false,
     });
